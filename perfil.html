@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - EcoDetect</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    
+    <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="icons/reciclar.png" alt="Logo EcoDetect" class="logo-img">
+                EcoDetect
+            </a>
+            <nav>
+                <a href="index.html">Início</a>
+                <a href="detectar.html">Detectar</a>
+                <a href="mapa.html">Mapa</a>
+                <a href="sobre.html">Sobre</a>
+            </nav>
+
+            <a href="login.html" class="btn btn-primary" id="btn-entrar">Entrar</a>
+            
+            <a href="perfil.html" id="btn-perfil" style="display: none;"> <img src="icons/avatar-padrao.svg" alt="Foto de Perfil" class="profile-pic-nav" id="nav-pic">
+            </a>
+                    <button class="menu-toggle" aria-label="Abrir menu">
+                <i class="ph-list"></i>
+            </button>
+        </div>
+    </header>    
+
+    <main>
+        <section id="perfil"  class="hero-main">
+            <div class="container text-center">
+                <h2 class="section-title">Meu Perfil</h2>
+                <p class="section-subtitle">Personalize suas informações e foto.</p>
+
+                <div class="perfil-grid">
+                    <div class="perfil-avatar">
+                        <img src="icons/avatar-padrao.svg" alt="Sua foto de perfil" id="avatar-preview">
+                        <label for="avatar-upload" class="btn btn-secondary">
+                            <i class="ph-upload-simple"></i>
+                            Trocar Foto
+                        </label>
+                        <input type="file" id="avatar-upload" accept="image/*" hidden>
+                    </div>
+
+                    <div class="form-container">
+                        <form id="perfil-form">
+                            <div class="form-group">
+                                <label for="nome">Nome completo</label>
+                                <input type="text" id="nome" name="nome" placeholder="João Silva">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="seu@email.com" disabled>
+                                <small>O email não pode ser alterado.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="nova-senha">Nova Senha</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="nova-senha" name="nova-senha" placeholder="Nova senha">
+                                    <span class="toggle-password" data-target="nova-senha">
+                                        <img src="icons/olhoaberto.png" alt="Mostrar senha">
+                                    </span>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full-width">
+                                <i class="ph-floppy-disk"></i>
+                                Salvar Alterações
+                            </button>
+                        </form>
+                         <button id="btn-logout" class="btn btn-danger btn-full-width">
+                            <i class="ph-sign-out"></i>
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

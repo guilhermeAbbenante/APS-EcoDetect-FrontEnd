@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detectar Descarte - EcoDetect</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="icons/reciclar.png" alt="Logo EcoDetect" class="logo-img">
+                EcoDetect
+            </a>
+            <nav>
+                <a href="index.html">Início</a>
+                <a href="detectar.html">Detectar</a>
+                <a href="mapa.html">Mapa</a>
+                <a href="sobre.html">Sobre</a>
+            </nav>
+
+            <a href="login.html" class="btn btn-primary" id="btn-entrar">Entrar</a>
+            
+            <a href="perfil.html" id="btn-perfil" style="display: none;"> <img src="icons/avatar-padrao.svg" alt="Foto de Perfil" class="profile-pic-nav" id="nav-pic">
+            </a>
+                    <button class="menu-toggle" aria-label="Abrir menu">
+                <i class="ph-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="detectar">
+            <div class="container text-center">
+                <h2 class="section-title">Detectar Descarte Irregular</h2>
+                <p class="section-subtitle">Envie uma foto de lixo descartado inadequadamente para nossa IA analisar</p>
+                
+                <div class="upload-box">
+                    <i class="ph-upload-simple icon-upload"></i>
+                    <h3>Arraste uma imagem ou clique para selecionar</h3>
+                    <p>PNG, JPG ou WEBP até 10MB</p>
+                    <input type="file" id="file-upload" accept="image/*" hidden>
+                    <label for="file-upload" class="btn btn-primary">Selecionar Arquivo</label>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EcoDetect. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ph-facebook-logo"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ph-instagram-logo"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ph-twitter-logo"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
