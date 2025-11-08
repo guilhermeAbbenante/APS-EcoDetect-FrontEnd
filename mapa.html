@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4tvQ8YrjmP7mH3bNHsaNBJ-fRiG1bcEY&callback=console.debug&libraries=maps,marker&v=beta"></script>
+
     <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -34,6 +36,14 @@
                 <i class="ph-list"></i>
             </button>
         </div>
+
+        <style>
+            .map-placeholder {
+                height: 600px; 
+                width: 100%;
+            }
+
+        </style>
     </header>
 
     <main>
@@ -42,27 +52,28 @@
                 <h2 class="section-title">Mapa de Ocorrências</h2>
                 <p class="section-subtitle">Visualize pontos críticos de descarte irregular identificados pela comunidade</p>
 
+
                 <div class="map-placeholder">
-                    <i class="ph-map-trifold icon-large"></i>
-                    <h3>Mapa Interativo</h3>
-                    <p>O mapa será integrado com serviços de geolocalização para exibir as detecções de descarte irregular em tempo real.</p>
+                    <gmp-map center="-23.5519522,-46.4037906" zoom="10" map-id="DEMO_MAP_ID">
+                        </gmp-map>
                 </div>
+
 
                 <div class="stats-grid">
                     <div class="card stat-card">
                         <h4>Total de Detecções</h4>
                         <p>Últimos 30 dias</p>
-                        <span class="stat-number">0</span>
+                        <span class="stat-number-status-total">0</span>
                     </div>
-                    <div class="card stat-card">
+                    <!-- <div class="card stat-card">
                         <h4>Área Mais Crítica</h4>
                         <p>Maior concentração</p>
                         <span class="stat-number">-</span>
-                    </div>
+                    </div> -->
                     <div class="card stat-card">
                         <h4>Status</h4>
                         <p>Pontos ativos</p>
-                        <span class="stat-number">0</span>
+                        <span class="stat-number-status">0</span>
                     </div>
                 </div>
             </div>
@@ -81,5 +92,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="localizacao.js"></script>
 </body>
 </html>

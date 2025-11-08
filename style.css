@@ -491,6 +491,18 @@ p {
     color: var(--primary-color);
 }
 
+.stat-number-status {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.stat-number-status-total {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
 .form-container {
     margin-top: 40px;
     max-width: 800px;
