@@ -98,54 +98,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnPerfil = document.getElementById('btn-perfil');
     const navPic = document.getElementById('nav-pic');
 
-    function checkLoginState() {
-        const user = JSON.parse(localStorage.getItem('ecoUser'));
+    async function checkLoginState() {
+        // const token = JSON.parse(localStorage.getItem('ecoUser'));
+        // console.log("TOKEN ==> ", token)
 
-        if (user && user.loggedIn) {
-            if (btnEntrar) btnEntrar.style.display = 'none';
-            if (btnPerfil) btnPerfil.style.display = 'block';
-            if (navPic) navPic.src = user.avatar || 'icons/avatar-padrao.svg'; // Alterado
+        // if (user && user.loggedIn) {
+    //         if (btnEntrar) btnEntrar.style.display = 'none';
+    //         if (btnPerfil) btnPerfil.style.display = 'block';
+    //         if (navPic) navPic.src = user.avatar || 'icons/avatar-padrao.svg'; // Alterado
 
-        if (document.getElementById('perfil')) {
-            const nomeInput = document.getElementById('nome');
-            const emailInput = document.getElementById('email');
-            const avatarPreview = document.getElementById('avatar-preview');
+    //     if (document.getElementById('perfil')) {
+    //         const nomeInput = document.getElementById('nome');
+    //         const emailInput = document.getElementById('email');
+    //         const avatarPreview = document.getElementById('avatar-preview');
 
-            if (nomeInput) nomeInput.value = user.nome || '';
-            if (emailInput) emailInput.value = user.email || '';
-            if (avatarPreview) avatarPreview.src = user.avatar || 'icons/avatar-padrao.svg'; // Alterado
-        }
-    } else {
-        if (btnEntrar) btnEntrar.style.display = 'block';
-        if (btnPerfil) btnPerfil.style.display = 'none';
-    }
+    //         if (nomeInput) nomeInput.value = user.nome || '';
+    //         if (emailInput) emailInput.value = user.email || '';
+    //         if (avatarPreview) avatarPreview.src = user.avatar || 'icons/avatar-padrao.svg'; // Alterado
+    //     }
+    // } else {
+    //     if (btnEntrar) btnEntrar.style.display = 'block';
+    //     if (btnPerfil) btnPerfil.style.display = 'none';
+    // }
 }
 
     //LÓGICA (login.html)
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
+    // const loginForm = document.getElementById('login-form');
+    // if (loginForm) {
+    //     loginForm.addEventListener('submit', function(e) {
+    //         e.preventDefault();
+    //         const email = document.getElementById('email').value;
+    //         const senha = document.getElementById('senha').value;
             
-            // Simulação
-            if (email && senha) {
-                const user = {
-                    loggedIn: true,
-                    email: email,
-                    nome: "Usuário Simulado",
-                    avatar: localStorage.getItem('ecoUserAvatar') || 'icons/avatar-padrao.svg'
-                };
-                localStorage.setItem('ecoUser', JSON.stringify(user));
+    //         // Simulação
+    //         if (email && senha) {
+    //             const user = {
+    //                 loggedIn: true,
+    //                 email: email,
+    //                 nome: "Usuário Simulado",
+    //                 avatar: localStorage.getItem('ecoUserAvatar') || 'icons/avatar-padrao.svg'
+    //             };
+    //             localStorage.setItem('ecoUser', JSON.stringify(user));
                 
-                alert('Login bem-sucedido! Redirecionando...');
-                window.location.href = 'index.html';
-            } else {
-                alert('Por favor, preencha email e senha.');
-            }
-        });
-    }
+    //             alert('Login bem-sucedido! Redirecionando...');
+    //             window.location.href = 'index.html';
+    //         } else {
+    //             alert('Por favor, preencha email e senha.');
+    //         }
+    //     });
+    // }
 
     //LÓGICA perfil.html
     const perfilForm = document.getElementById('perfil-form');

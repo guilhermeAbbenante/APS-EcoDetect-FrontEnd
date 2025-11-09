@@ -1,7 +1,6 @@
+import { front_url } from './config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-
-    const apiUrl = 'http://127.0.0.1:8000';
-
     /**
      * Função que SIMULA a busca de dados da API.
      */
@@ -17,15 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // return mockData;
         
+        const token = localStorage.getItem('ecoUser');
 
         try {
             //Tornar dinamico
         const response = await fetch(
-                `${apiUrl}/lixo/consultar?user=3`, 
+                `${front_url}/lixo/consultar?user=3`, 
                 {
                     method: 'GET', 
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrYWxhZGluQGdtYWlsLmNvbSIsImV4cCI6MTc2MjY0NzA3NH0.03SSzWSXht2pZmCKliY3epCtDnCIgVt3fkJ1GFNoF7I` 
+                        'Authorization': `Bearer ${token}` 
                     }
                 }
             );
