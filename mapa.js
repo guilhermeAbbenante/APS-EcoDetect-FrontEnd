@@ -69,8 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            statNumber.textContent = locais + 1;
-            statNumberTotal.textContent = locais + 1;
+            if(locais) {
+                statNumber.textContent = locais + 1;
+                statNumberTotal.textContent = locais + 1;
+            } else {
+                statNumber.textContent = 0;
+                statNumberTotal.textContent = 0;
+            }
+
+
         } catch (error) {
             console.error('Erro ao carregar marcadores no mapa:', error);
         }

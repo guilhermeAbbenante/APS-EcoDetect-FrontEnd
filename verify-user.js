@@ -29,7 +29,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (data ) {
             if (btnEntrar) btnEntrar.style.display = 'none';
             if (btnPerfil) btnPerfil.style.display = 'block';
-            if (navPic) navPic.src = user.avatar || 'icons/avatar-padrao.svg'; // Alterado
+            if (navPic) {
+                if(data && data.image) {
+                    navPic.src = front_url + data.image;
+                } else {
+                    navPic.src = 'icons/avatar-padrao.svg';
+                }
+            }
 
             if (document.getElementById('perfil')) {
                 const nomeInput = document.getElementById('nome');
@@ -38,7 +44,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (nomeInput) nomeInput.value = data.name || '';
                 if (emailInput) emailInput.value = data.email || '';
-                if (avatarPreview) avatarPreview.src = user.avatar || 'icons/avatar-padrao.svg'; // Alterado
+                if (avatarPreview) {
+                    if(data && data.image) {
+                        avatarPreview.src = front_url + data.image;
+                    } else {
+                        avatarPreview.src = 'icons/avatar-padrao.svg';
+                    }
+                }
             }
         } else {
             if (btnEntrar) btnEntrar.style.display = 'block';

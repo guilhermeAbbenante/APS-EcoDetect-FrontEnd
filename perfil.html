@@ -47,7 +47,7 @@
 
                 <div class="perfil-grid">
                     <div class="perfil-avatar">
-                        <img src="icons/avatar-padrao.svg" alt="Sua foto de perfil" id="avatar-preview">
+                        <img src="" alt="Sua foto de perfil" id="avatar-preview">
                         <label for="avatar-upload" class="btn btn-secondary">
                             <i class="ph-upload-simple"></i>
                             Trocar Foto
@@ -65,6 +65,15 @@
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" placeholder="seu@email.com" disabled>
                                 <small>O email não pode ser alterado.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="nova-senha">Senha antiga</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="old-senha" name="old-senha" placeholder="Antiga senha">
+                                    <span class="toggle-password" data-target="old-senha">
+                                        <img src="icons/olhoaberto.png" alt="Mostrar senha">
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="nova-senha">Nova Senha</label>
@@ -92,7 +101,5 @@
 
     <footer class="footer">
         </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
