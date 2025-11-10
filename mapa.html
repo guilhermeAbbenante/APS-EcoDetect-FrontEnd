@@ -15,6 +15,17 @@
     <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
+
+<!-- Modal de detalhes -->
+<div id="modal-info" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img id="modal-img" src="" alt="Imagem da ocorrência" class="modal-img">
+    <h3 id="modal-local"></h3>
+    <p id="modal-data"></p>
+  </div>
+</div>
+
 <body>
     <header class="navbar">
         <div class="container">
@@ -31,9 +42,10 @@
 
             <a href="login.html" class="btn btn-primary" id="btn-entrar">Entrar</a>
             
-            <a href="perfil.html" id="btn-perfil" style="display: none;"> <img src="images/avatar-padrao.jpg" alt="Foto de Perfil" class="profile-pic-nav" id="nav-pic">
+            <a href="perfil.html" id="btn-perfil" style="display: none;"> 
+                <img src="images/avatar-padrao.jpg" alt="Foto de Perfil" class="profile-pic-nav" id="nav-pic">
             </a>
-                    <button class="menu-toggle" aria-label="Abrir menu">
+            <button class="menu-toggle" aria-label="Abrir menu">
                 <i class="ph-list"></i>
             </button>
         </div>
@@ -43,7 +55,6 @@
                 height: 600px; 
                 width: 100%;
             }
-
         </style>
     </header>
 
@@ -53,12 +64,9 @@
                 <h2 class="section-title">Mapa de Ocorrências</h2>
                 <p class="section-subtitle">Visualize pontos críticos de descarte irregular identificados pela comunidade</p>
 
-
                 <div class="map-placeholder">
-                    <gmp-map center="-23.5519522,-46.4037906" zoom="10" map-id="DEMO_MAP_ID">
-                        </gmp-map>
+                    <gmp-map center="-23.5519522,-46.4037906" zoom="10" map-id="DEMO_MAP_ID"></gmp-map>
                 </div>
-
 
                 <div class="stats-grid">
                     <div class="card stat-card">
@@ -66,16 +74,23 @@
                         <p>Últimos 30 dias</p>
                         <span class="stat-number-status-total">0</span>
                     </div>
-                    <!-- <div class="card stat-card">
-                        <h4>Área Mais Crítica</h4>
-                        <p>Maior concentração</p>
-                        <span class="stat-number">-</span>
-                    </div> -->
                     <div class="card stat-card">
                         <h4>Status</h4>
                         <p>Pontos ativos</p>
                         <span class="stat-number-status">0</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🔽 NOVA SEÇÃO: LISTA DE TODOS OS LIXOS -->
+        <section id="lista-lixos" class="bg-light">
+            <div class="container">
+                <h2 class="section-title text-center">Todos os Lixos Detectados</h2>
+                <p class="section-subtitle text-center">Veja abaixo as ocorrências mais recentes enviadas pelos usuários</p>
+
+                <div id="lista-lixos-container" class="lixos-grid">
+                    <!-- Itens serão inseridos aqui via JavaScript -->
                 </div>
             </div>
         </section>

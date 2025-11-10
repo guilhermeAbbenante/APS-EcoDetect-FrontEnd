@@ -1,45 +1,24 @@
 import { front_url } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * Função que SIMULA a busca de dados da API.
-     */
+
     async function fetchMockOcorrencias() {
-        
-        // Dados mocados que sua API retornaria
-        // const mockData = [
-        //     { id: 1, title: "Descarte irregular na Praça da Sé", lat: -23.5505, lng: -46.6333 },
-        //     { id: 2, title: "Entulho perto do MASP", lat: -23.5610, lng: -46.6559 },
-        //     { id: 3, title: "Lixo acumulado no Parque Ibirapuera", lat: -23.5882, lng: -46.6588 },
-        //     { id: 4, title: "Ponto viciado - R. Augusta", lat: -23.5540, lng: -46.6620 }
-        // ];
-
-        // return mockData;
-        
         const token = localStorage.getItem('ecoUser');
-
         try {
-            //Tornar dinamico
-        const response = await fetch(
+            const response = await fetch(
                 `${front_url}/lixo/consultar?user=3`, 
                 {
                     method: 'GET', 
-                    headers: {
-                        'Authorization': `Bearer ${token}` 
-                    }
+                    headers: { 'Authorization': `Bearer ${token}` }
                 }
             );
-            if (!response.ok) {
-                throw new Error(`Erro na API: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Erro na API: ${response.status}`);
             const data = await response.json();
-            console.log("data ==> ", data)
             return data;
         } catch (error) {
-            console.error("Erro ao buscar dados da API real:", error);
+            console.error("Erro ao buscar dados da API:", error);
             return []; 
         }
-        
     }
 
     async function carregarMarcadores() {
@@ -48,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const mapElement = document.querySelector('gmp-map');
             const statNumber = document.querySelector('.stat-number-status');
             const statNumberTotal = document.querySelector('.stat-number-status-total');
-            
+            const listaContainer = document.getElementById('lista-lixos-container');
+
             if (!mapElement) {
                 console.error('Elemento <gmp-map> não foi encontrado no DOM.');
                 return;
@@ -56,20 +36,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const ocorrencias = await fetchMockOcorrencias();
 
-            ocorrencias.forEach((local, i) => {
-                const marker = document.createElement('gmp-advanced-marker');
-                
-                if(local.longitude != '') {
-                    marker.setAttribute('position', `${local.latitude},${local.longitude}`);
-                    marker.setAttribute('title', `Ocorrência: ${i}`);
-                    
-                    mapElement.appendChild(marker);
+            if (listaContainer) listaContainer.innerHTML = '';
 
-                    locais = i;
+            ocorrencias.forEach((local, i) => {
+                if (!local.longitude) return;
+
+                const marker = document.createElement('gmp-advanced-marker');
+                marker.setAttribute('position', `${local.latitude},${local.longitude}`);
+                marker.setAttribute('title', `Ocorrência: ${i}`);
+
+                const imgUrl = `${front_url}/detect/detected_${local.imagem || ''}`;
+
+                const localTexto = `${local.rua}, ${local.estado}, ${local.cidade}`;
+                const dataTexto = local.data || new Date().toLocaleString('pt-BR');
+
+                // 🔹 Clique no marcador abre modal
+                marker.addEventListener('click', () => {
+                    abrirModal({
+                        img: imgUrl,
+                        local: localTexto,
+                        data: dataTexto
+                    });
+                });
+
+                mapElement.appendChild(marker);
+                locais = i;
+
+                // 🔹 Cria card da lista
+                if (listaContainer) {
+                    const card = document.createElement('div');
+                    card.classList.add('lixo-card');
+                    card.innerHTML = `
+                        <img src="${imgUrl}" alt="Lixo detectado">
+                        <div class="lixo-card-content">
+                            <h4>${localTexto}</h4>
+                            <p>${dataTexto}</p>
+                        </div>
+                    `;
+
+                    // 🔹 Clique no card também abre modal
+                    card.addEventListener('click', () => {
+                        abrirModal({
+                            img: imgUrl,
+                            local: localTexto,
+                            data: dataTexto
+                        });
+                    });
+
+                    listaContainer.appendChild(card);
                 }
             });
 
-            if(locais) {
+            // Atualiza contadores
+            if (locais !== undefined) {
                 statNumber.textContent = locais + 1;
                 statNumberTotal.textContent = locais + 1;
             } else {
@@ -77,10 +96,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 statNumberTotal.textContent = 0;
             }
 
-
         } catch (error) {
             console.error('Erro ao carregar marcadores no mapa:', error);
         }
+    }
+
+    // 🔹 Função para abrir a modal
+    function abrirModal(dados) {
+        const modal = document.getElementById("modal-info");
+        const img = document.getElementById("modal-img");
+        const local = document.getElementById("modal-local");
+        const data = document.getElementById("modal-data");
+
+        img.src = dados.img;
+        local.textContent = dados.local;
+        data.textContent = `Data e hora: ${dados.data}`;
+        modal.style.display = "block";
+
+        document.querySelector(".close-btn").onclick = () => modal.style.display = "none";
+        window.onclick = e => { if (e.target == modal) modal.style.display = "none"; };
     }
 
     carregarMarcadores();

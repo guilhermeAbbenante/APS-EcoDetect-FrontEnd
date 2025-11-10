@@ -75,7 +75,6 @@ export async function getUser() {
             'Authorization': `Bearer ${token}`
         }
     });
-
     if (!response.ok) return null;
 
     user = await response.json();
