@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 marker.setAttribute('position', `${local.latitude},${local.longitude}`);
                 marker.setAttribute('title', `Ocorrência: ${i}`);
 
-                const imgUrl = `${front_url}/detect/detected_${local.imagem || ''}`;
+                const imgUrl = `${front_url}${local.imagem || ''}`;
 
                 const localTexto = `${local.rua}, ${local.estado}, ${local.cidade}`;
                 const dataTexto = local.data || new Date().toLocaleString('pt-BR');

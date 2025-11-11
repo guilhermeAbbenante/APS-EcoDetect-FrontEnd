@@ -68,28 +68,28 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadBox.style.color = 'var(--text-color)';
         });
 
-        uploadBox.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadBox.style.borderColor = 'var(--border-color)';
-            uploadBox.style.color = 'var(--text-color)';
+        // uploadBox.addEventListener('drop', (e) => {
+        //     e.preventDefault();
+        //     uploadBox.style.borderColor = 'var(--border-color)';
+        //     uploadBox.style.color = 'var(--text-color)';
             
-            if (e.dataTransfer.files.length > 0) {
-                fileUpload.files = e.dataTransfer.files;
-                handleFileUpload(fileUpload.files[0]); // Simula o upload
-            }
-        });
+        //     if (e.dataTransfer.files.length > 0) {
+        //         fileUpload.files = e.dataTransfer.files;
+        //         handleFileUpload(fileUpload.files[0]); // Simula o upload
+        //     }
+        // });
 
-        fileUpload.addEventListener('change', () => {
-            if (fileUpload.files.length > 0) {
-                handleFileUpload(fileUpload.files[0]); // Simula o upload
-            }
-        });
+        // fileUpload.addEventListener('change', () => {
+        //     if (fileUpload.files.length > 0) {
+        //         handleFileUpload(fileUpload.files[0]); // Simula o upload
+        //     }
+        // });
 
-        function handleFileUpload(file) {
-            console.log('Arquivo selecionado:', file.name);
+        // function handleFileUpload(file) {
+        //     console.log('Arquivo selecionado:', file.name);
             
-            alert('Imagem enviada para análise (simulação): ' + file.name);
-        }
+        //     alert('Imagem enviada para análise (simulação): ' + file.name);
+        // }
     }
 
     checkLoginState();
