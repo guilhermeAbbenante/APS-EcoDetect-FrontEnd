@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (listaContainer) listaContainer.innerHTML = '';
 
             ocorrencias.forEach((local, i) => {
-                if (!local.longitude) return;
 
                 const marker = document.createElement('gmp-advanced-marker');
                 marker.setAttribute('position', `${local.latitude},${local.longitude}`);
@@ -47,8 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const imgUrl = `${front_url}${local.imagem || ''}`;
 
-                const localTexto = `${local.rua}, ${local.estado}, ${local.cidade}`;
-                const dataTexto = local.data || new Date().toLocaleString('pt-BR');
+                let localTexto = "Não disponível";
+                if(local.rua && local.cidade && local.estado){
+                    localTexto = `${local.rua}, ${local.cidade}, ${local.estado}`;
+                }
+
+                let dataTexto = "Não disponível";
+                if(local.data){
+                    dataTexto = new Date(local.data.replace(" ", "T")); // Corrige o formato ISO
+        
+                    dataTexto = dataTexto.toLocaleString("pt-BR", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    });
+                }
 
                 // 🔹 Clique no marcador abre modal
                 marker.addEventListener('click', () => {
