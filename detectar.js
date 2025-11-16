@@ -39,6 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error(`Erro na API: ${response.status}`);
             
             const data = await response.json();
+
+            if(data.success === 0){
+                alert(data.message || "Erro ao processar a imagem.");
+                return data;
+            }
+
             let dataFormatada = "Data não disponível";
 
             if(data.lixo.data){
