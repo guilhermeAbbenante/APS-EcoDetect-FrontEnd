@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const token = localStorage.getItem('ecoUser');
         try {
             const response = await fetch(
-                `${front_url}/lixo/consultar?user=3`, 
+                `${front_url}/lixo/consultar`, 
                 {
                     method: 'GET', 
                     headers: { 'Authorization': `Bearer ${token}` }
@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     abrirModal({
                         img: imgUrl,
                         local: localTexto,
-                        data: dataTexto
+                        data: dataTexto,
+                        user: local.user?.username || 'Anônimo'
                     });
                 });
 
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="lixo-card-content">
                             <h4>${localTexto}</h4>
                             <p>${dataTexto}</p>
+                            <p>Enviado por: ${local.user?.username || 'Anônimo'}</p>
                         </div>
                     `;
 
@@ -93,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         abrirModal({
                             img: imgUrl,
                             local: localTexto,
-                            data: dataTexto
+                            data: dataTexto,
+                            user: local.user?.username || 'Anônimo'
                         });
                     });
 
@@ -121,10 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const img = document.getElementById("modal-img");
         const local = document.getElementById("modal-local");
         const data = document.getElementById("modal-data");
+        const user = document.getElementById("modal-user");
 
         img.src = dados.img;
         local.textContent = dados.local;
         data.textContent = `Data e hora: ${dados.data}`;
+        user.textContent = `Enviado por: ${dados.user}`;
         modal.style.display = "block";
 
         document.querySelector(".close-btn").onclick = () => modal.style.display = "none";
